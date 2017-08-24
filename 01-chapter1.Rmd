@@ -3,7 +3,8 @@ title: "Distributed Systems CH1 Notes"
 author: "Keh-Harng Feng"
 date: "August 23, 2017"
 output:
-  bookdown::pdf_book
+  bookdown::pdf_book:
+    toc: FALSE
 ---
 
 ```{r setup, include=FALSE}
@@ -12,7 +13,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 # Characterization of Distributed Systems
 
-Definition:
+## Introduction
 
 **Distributed System**: A system in which hardware or software components located at networked computers communicate and coordinate their actions only by passing messages. Can be spatially separated by any distance. Why? **To share resources.**
 
