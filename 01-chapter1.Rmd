@@ -44,3 +44,36 @@ Consequences from the definition:
 3. P2P technology (each client contributes resources such as storage and processing to acoomodate the game). See Chapters 2 and 10.
 
 - Financial Trading: need to have real-time access to a wide range of data (ie: current share prices, trends, economic/political developments etc).The emphasis is to deliver events such as a drop in a share price reliably and quickly to very large numbers of clients. Client/Server doesn't work! Solution: *distributed event-based systems* (see Chapter 6).
+
+## Trends in Distributed Systems
+
+Changes caused by:
+
+- Pervasiveness of networking technology. For example, the Internet.
+
+- Ubiquitous computing computing + desire for mobile distributed computing. 
+
+Ubiquitous computing: constantly harnessing many small, cheap computational devices in users' physical environments to the point of them not being noticed.Devices are generally fixed to their environments.
+
+Mobile computing: laptop computers, smart phones, GPS, etc.Users can take the devie with them.
+
+*spontaenous interoperation*: allowing visitor devices to quickly communicate with others on the host network.
+
+*service discovery*: associating visitor devices with suitable local services
+
+- Increasing demand for multimedia services. The system should support storage, transmission and presentation of a range of media types.
+
+*discrete media*: text messages, pictures 
+
+*continuous media*: audio, videos (has a temporal dimension) -> needs to preserve a thoroughput such as frames per second & maximum delay/latency.
+
+- The view that distributed system is a utility. Physical resources such as storage and processing can be made available to networked computers. Software services can also be made available.
+
+*cloud computing*: computing as a utility. A cloud is a set of Internet-based application, storage and computing services for most users' needs.Generally implemented on cluster computers to provide the necessary scale and performance.
+
+*cluster computer*: a set of interconnected computers that cooperate closely to provide a single, integrated high-performance computing capability.
+
+*blade servers*: minimal computational elements containing processing & storage capabilities.
+
+## Focus on Resource Sharing
+
