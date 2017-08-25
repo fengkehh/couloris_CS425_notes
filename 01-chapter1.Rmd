@@ -3,8 +3,7 @@ title: "Distributed Systems CH1 Notes"
 author: "Keh-Harng Feng"
 date: "August 23, 2017"
 output:
-  bookdown::pdf_book:
-    toc: FALSE
+  bookdown::pdf_book
 ---
 
 ```{r setup, include=FALSE}
@@ -77,3 +76,109 @@ Mobile computing: laptop computers, smart phones, GPS, etc.Users can take the de
 
 ## Focus on Resource Sharing
 
+*service*: a part of a computer system that manages a collection of related resources and presents their functionality to users and applications. ie: file service (provides read, write & delete etc).
+
+*server*: a running program/process on a networked computer that accepts requests to perform service. -> passively respond to clients. Continuously running.
+
+*client*: the requesting process to a server.-> actively send requests to servers. Only a client as long as the process that sends requests is running.
+
+Technically, client/server only refer to the processes. 
+
+## Challenges
+
+### Heterogeneity
+Differences in networks, computer hardware, operating systems, programming languages and implementations by different developers etc.
+
+*Middleware*: a software layer that provides a programming abstraction and also to mask the heterogeneity of the underlying components. ie: Common Object Request Broker(CORBA), Java Remote Method Invocation (RMI) etc.
+
+*Mobile code*: program code that can be trasnferred from one computer to another and run at the destination. ie: Java applets. Javascript programs for browsers.
+
+*virtual machine*: allows the compiler of a particular language to generate code for a virtual machine instead of a particular hardware.  ie: Java compiler for JVM.
+
+### Openness
+The characterstic that determines whether the system can be extended and reimplemented in various ways. For a distributed system, the most important factor is the degree to which new resource-sharing services can be added and made available.
+
+To achieve openness: require specification and documentation of key software interfaces to be made available to software developers. ex: "Requests For Comments (RFCs)" for the Internet protocols.
+
+To create open systems:
+
+- key interfaces are published
+
+- based on a uniform communication mechanism and published interfaces for access to shared resources.
+
+- can be constructed from heterogenous hardware and software.
+
+### Security
+Three components:
+
+- Confidentiality (protection against disclosure to unauthorized individuals)
+
+- Integrity (protection against alteration or corruption)
+
+- Availability (protection against interference with access)
+
+### Scalability
+A system is scalable if it will remain effective when there is a significant increase in the number of resources and the number of users.
+
+Challenges:
+
+*Controlling the cost of physical resources*: extending the system should be at a reasonable cost. In general, for a system with n users to be scalabe, the quantity of physical resources required to support them should be at most O(n).
+
+*Controlling the performance loss*: for a system to be scalable, the maximum performance loss should be no worse than O(log n).
+
+*Preventing software resources running out*: a counter example is the IP address running out due to using 32bits. 
+
+*Avoiding performance bottlenecks*: algorithms should be decentralized to avoid having performance bottlenecks. ie: predecessaor of DNS had one central computer with the entire domain name table -> bottleneck! Current solution: partition the tables to different DNS servers throughout the Internet.
+
+### Failure handling
+Failures in a distributed system are partial -> some components fail, others keep working. Must be handled appropriately!
+
+Challenges:
+
+*Detecting failures*: ex: using checksums to detect corrupted data in a message or a file. Must manage the presence of failures that cannot be detected but may be suspected.
+
+*Masking failures*: some detected failures can be hidden or made less severe. Ex: 
+
+1. Messages can be retransmitted if they fail to arrive.
+2. Data can be backed up.
+
+*Tolerating failures*: Ex: web browser cannot contact a web server -> inform problem then stop trying.
+
+*Recovery from failures*: design that allows data to be recovered or rolled back after failure.
+
+*Redudancy*: services that can tolerate failures by having backup plans. ie: at least two different routes between any two routers, DNS replicated in at least two different servers, database replicated in several servers to ensure accessbility after failure of one server.
+
+A distributed system should provide a high degree of availability in the face of hardware faults.
+
+*availability*: a measure of the proportion of time the system is available for use.
+
+### Concurrency
+If a shared resource only allows one client request at a time it will limit throughput. Solution: allow multiple client requests to be processed concurrently. Must ensure operations on a shared resource operate correctly in a concurrent environment (ie: data remains consistent)!
+
+### Transparency
+Conceal from the user and the application programmer of the components in a distributed system, so that the system can be seen as a whole entity as opposed to a collection of components.
+
+Eight forms of transparency:
+
+*Access transparency*: allows local and remote resources to be accessed using identical operations. <- **one of the most important!**
+
+*Location transparency*: allows resources to be accessed without knowledge of their physical or network location (ie: not knowing their building or IP address). <- **one of the most important!**
+
+These two significantly affect the utilization of distributed resources. Sometimes bundled together as *network transparency*.
+
+-----
+
+*Concurrency transparency*: allows several processes to operate concurrently using shared resources without interference between them.
+
+*Replication transparency*: allows multiple instances of resources to be used to increase reliability under the hood.
+
+*Failure transparency*: enables concleament of faults to allow completiont of tasks despite failures.
+
+*Mobility transparency*: allows the movement of resources and clients without affecting the operations.
+
+*Perforamnce transparency*: allows the system to be dynamically reconfigured based on the load.
+
+*Scaling transparency*: allows the system and application to expand in scale without changing system structure or algorithm.
+
+### Quality of service
+Four measures: *reliability*, *security*, *perforamnce*, *adaptability*.
